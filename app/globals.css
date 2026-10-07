@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: oklch(0.992 0.004 140);
+  --tint: oklch(0.965 0.025 140);
+  --ink: oklch(0.24 0.03 150);
+  --muted: oklch(0.44 0.025 150);
+  --line: oklch(0.9 0.02 140);
+  --brand: oklch(0.47 0.13 148);
+  --brand-dark: oklch(0.36 0.1 150);
+  --brand-deep: oklch(0.3 0.08 152);
+  --brand-soft: oklch(0.94 0.05 140);
+  --cta: oklch(0.8 0.16 75);
+  --cta-hover: oklch(0.75 0.16 70);
+  --star: oklch(0.8 0.16 80);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-tint: var(--tint);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-star: var(--star);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--bg) !important;
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg) !important;
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+h1, h2, h3 { line-height: 1.12; letter-spacing: -0.015em; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.d1 { animation-delay: 0.06s; }
+.d2 { animation-delay: 0.14s; }
+.d3 { animation-delay: 0.22s; }
+
+details summary::-webkit-details-marker { display: none; }
+details[open] .chev { transform: rotate(45deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise { animation: none; }
+  * { transition: none !important; }
 }
